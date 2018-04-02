@@ -1,0 +1,7 @@
+C:\Users\247434\source\repos\DistrSystems3\DistrSystems3\DistrSystems3\bin\Debug\DistrSystems3.exe.config
+C:\Users\247434\source\repos\DistrSystems3\DistrSystems3\DistrSystems3\bin\Debug\DistrSystems3.exe
+C:\Users\247434\source\repos\DistrSystems3\DistrSystems3\DistrSystems3\bin\Debug\DistrSystems3.pdb
+C:\Users\247434\source\repos\DistrSystems3\DistrSystems3\DistrSystems3\obj\Debug\DistrSystems3.csprojResolveAssemblyReference.cache
+C:\Users\247434\source\repos\DistrSystems3\DistrSystems3\DistrSystems3\obj\Debug\DistrSystems3.csproj.CoreCompileInputs.cache
+C:\Users\247434\source\repos\DistrSystems3\DistrSystems3\DistrSystems3\obj\Debug\DistrSystems3.exe
+C:\Users\247434\source\repos\DistrSystems3\DistrSystems3\DistrSystems3\obj\Debug\DistrSystems3.pdb
