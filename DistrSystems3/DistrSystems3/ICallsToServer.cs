@@ -13,6 +13,6 @@ namespace DistrSystems3
         void Disconnect(string id);
         List<string> GetTasks(string id);
         void AddTask(IEnumerable<string> ids);
-        void DeleteTask(string id);
+        void BalanceLoad();
     }
 }

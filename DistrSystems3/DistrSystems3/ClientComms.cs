@@ -84,19 +84,21 @@ namespace DistrSystems3
                 }
             }
         }
-        public void DeleteTask(string id)
+        public void BalanceLoad()
         {
+            
             lock (_clients)
             {
                 foreach(var c in _clients)
                 {
-                    if (c.Value.Contains(id))
+                    lock (_freeTasks)
                     {
-                        c.Value.Remove(id);
-                        break;
+                        _freeTasks.AddRange(c.Value);
+                        c.Value.RemoveRange(0, c.Value.Count);
                     }
                 }
             }
+            DistributeTasks();
         }
     }
 }

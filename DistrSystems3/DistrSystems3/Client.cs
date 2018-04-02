@@ -34,7 +34,8 @@ namespace DistrSystems3
             Console.WriteLine(" type 'c' for connect");
             Console.WriteLine(" type 'd' for disconnect");
             Console.WriteLine(" type 'a' for add task");
-           
+            Console.WriteLine(" type 'v' for balance the load");
+
 
             while (!_stop)
             {
@@ -50,6 +51,10 @@ namespace DistrSystems3
                     case 'a':
                         m_RemoteObject.AddTask(new List<string>() { Guid.NewGuid().ToString() });
                         break;
+
+                    case 'b':
+                        m_RemoteObject.BalanceLoad();
+                        break;
                     default:
                         break;
                 }
@@ -62,10 +67,10 @@ namespace DistrSystems3
             {
                 Task.Delay(5000);
                 var tasksFromServer = m_RemoteObject.GetTasks(id);
-                var addedTasks = tasksFromServer.Where(x => !tasks.Contains(x)).ToList();
+                var addedTasks = tasksFromServer.Where(x => !tasks.Any(y=>y==x)).ToList();
                 tasks.AddRange(addedTasks);
                 OutputList("added tasks", addedTasks);
-                var deletedTasks = tasks.Where(x => !tasksFromServer.Contains(x)).ToList();
+                var deletedTasks = tasks.Where(x => !tasksFromServer.Any(y=>y==x)).ToList();
                 for (var i = 0; i < deletedTasks.Count; i++)
                 {
                     tasks.Remove(deletedTasks[i]);
@@ -78,7 +83,7 @@ namespace DistrSystems3
         {
             if (list.Count() > 0)
             {
-                Console.WriteLine(message+$" at {DateTime.Now}, list count {list.Count()}");
+                Console.WriteLine(message+$" at {DateTime.Now}");
                 foreach(var x in list)
                 {
                     Console.WriteLine(x);
