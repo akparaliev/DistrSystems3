@@ -30,7 +30,6 @@ namespace DistrSystems3
                 "RemoteServer",
                 WellKnownObjectMode.Singleton);
 
-
             Console.ReadLine();
         }
     }

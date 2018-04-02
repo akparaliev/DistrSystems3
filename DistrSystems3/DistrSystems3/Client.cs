@@ -14,7 +14,7 @@ namespace DistrSystems3
     {
         private bool _stop;
         private List<string> tasks;
-        public void Run()
+        private ICallsToServer GetServerInstance()
         {
             tasks = new List<string>();
             Console.WriteLine("type host");
@@ -27,12 +27,17 @@ namespace DistrSystems3
             ICallsToServer m_RemoteObject = (ICallsToServer)
                 Activator.GetObject(typeof(ICallsToServer),
                 $"tcp://{host}:123/RemoteServer");
-
+            return m_RemoteObject;
+        }
+        public void RunMain()
+        {
+            var m_RemoteObject = GetServerInstance();
             var guid = Guid.NewGuid().ToString();
             var t = Task.Run(() => GetTasks(guid, m_RemoteObject));
             Console.WriteLine($"your id: {guid}");
             Console.WriteLine(" type 'c' for connect");
             Console.WriteLine(" type 'd' for disconnect");
+
             Console.WriteLine(" type 'a' for add task");
             Console.WriteLine(" type 'v' for balance the load");
 
@@ -54,6 +59,35 @@ namespace DistrSystems3
 
                     case 'b':
                         m_RemoteObject.BalanceLoad();
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+        }
+
+        public void Run()
+        {
+            var m_RemoteObject = GetServerInstance();
+            var guid = Guid.NewGuid().ToString();
+            var t = Task.Run(() => GetTasks(guid, m_RemoteObject));
+            Console.WriteLine($"your id: {guid}");
+            Console.WriteLine(" type 'c' for connect");
+            Console.WriteLine(" type 'd' for disconnect");
+           
+
+
+            while (!_stop)
+            {
+                var result = Console.ReadLine();
+                switch (result[0])
+                {
+                    case 'c':
+                        m_RemoteObject.Connect(guid);
+                        break;
+                    case 'd':
+                        m_RemoteObject.Disconnect(guid);
                         break;
                     default:
                         break;

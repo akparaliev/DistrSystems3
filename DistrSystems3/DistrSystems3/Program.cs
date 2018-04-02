@@ -25,6 +25,9 @@ namespace DistrSystems3
                     case "s":
                         new Server().Run();
                         break;
+                    case "cm":
+                        new Client().RunMain();
+                        break;
                     default:
                         new Server().Run();
                         break;
