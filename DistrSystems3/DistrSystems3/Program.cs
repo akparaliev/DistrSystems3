@@ -12,7 +12,7 @@ namespace DistrSystems3
         {
             if (args.Length == 0)
             {
-                new Client().Run();
+                new Server().Run();
             }
 
             else

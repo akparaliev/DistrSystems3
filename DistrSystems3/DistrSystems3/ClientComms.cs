@@ -37,8 +37,11 @@ namespace DistrSystems3
             {
                 if (_clients.ContainsKey(id))
                 {
-                    AddTask(_clients[id]);
+                    var list = new string[_clients.Count];
+                    _clients[id].CopyTo(list);
                     _clients.Remove(id);
+                    AddTask(list);
+                
                 }
             }
         }
