@@ -35,11 +35,10 @@ namespace DistrSystems3
             var guid = Guid.NewGuid().ToString();
             var t = Task.Run(() => GetTasks(guid, m_RemoteObject));
             Console.WriteLine($"your id: {guid}");
-            Console.WriteLine(" type 'c' for connect");
-            Console.WriteLine(" type 'd' for disconnect");
+
 
             Console.WriteLine(" type 'a' for add task");
-            Console.WriteLine(" type 'v' for balance the load");
+            Console.WriteLine(" type 'b' for balance the load");
 
 
             while (!_stop)
@@ -47,12 +46,6 @@ namespace DistrSystems3
                 var result = Console.ReadLine();
                 switch (result[0])
                 {
-                    case 'c':
-                        m_RemoteObject.Connect(guid);
-                        break;
-                    case 'd':
-                        m_RemoteObject.Disconnect(guid);
-                        break;
                     case 'a':
                         m_RemoteObject.AddTask(new List<string>() { Guid.NewGuid().ToString() });
                         break;

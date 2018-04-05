@@ -37,7 +37,7 @@ namespace DistrSystems3
             {
                 if (_clients.ContainsKey(id))
                 {
-                    var list = new string[_clients.Count];
+                    var list = new string[_clients[id].Count];
                     _clients[id].CopyTo(list);
                     _clients.Remove(id);
                     AddTask(list);
@@ -64,13 +64,14 @@ namespace DistrSystems3
             {
                 _freeTasks.AddRange(ids);
             }
-            DistributeTasks();
+            if (_clients.Count>0)
+                DistributeTasks();
         }
         private void DistributeTasks()
         {
             lock (_freeTasks)
             {
-                while (_freeTasks.Any())
+                while (_freeTasks.Any() )
                 {
                     lock (_clients)
                     {
